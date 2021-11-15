@@ -14,10 +14,7 @@ namespace MakairaConnect;
 use Doctrine\ORM\Tools\SchemaTool;
 use MakairaConnect\DependencyInjection\ModifierCompilerPass;
 use MakairaConnect\Models\MakRevision as MakRevisionModel;
-use MakairaConnect\Service\UpdateFilters;
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\Context\ActivateContext;
-use Shopware\Components\Plugin\Context\DeactivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -110,12 +107,4 @@ class MakairaConnect extends Plugin
         );
     }
 
-    /**
-     * This method can be overridden
-     */
-    public function deactivate(DeactivateContext $context)
-    {
-        $this->container->get(UpdateFilters::class)->disable();
-        parent::deactivate($context);
-    }
 }
