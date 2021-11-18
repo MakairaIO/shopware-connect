@@ -5,7 +5,7 @@ namespace MakairaConnect\Mapper;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
+use Doctrine\DBAL;
 use MakairaConnect\Modifier\CategoryModifierInterface;
 use MakairaConnect\Modifier\ManufacturerModifierInterface;
 use MakairaConnect\Modifier\ProductModifierInterface;
@@ -15,7 +15,12 @@ use Shopware\Bundle\StoreFrontBundle\Struct\Product;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContext;
 use Shopware\Components\Routing\RouterInterface;
 use Shopware\Models\Category\Category;
+use function array_flip;
+use function array_intersect;
+use function array_intersect;
+use function array_keys;
 use function array_map;
+use function array_merge;
 use function array_pop;
 use function count;
 use function str_replace;
@@ -63,12 +68,18 @@ class EntityMapper
     private $now;
 
     /**
+     * @var array<int, int>
+     */
+    private $shopCategories;
+
+    /**
      * EntityMapper constructor.
      *
      * @param RouterInterface        $router
      * @param EntityManagerInterface $entityManager
      *
-     * @throws Exception
+     * @throws DBAL\Driver\Exception
+     * @throws DBAL\Exception
      */
     public function __construct(
         RouterInterface $router,
@@ -77,6 +88,11 @@ class EntityMapper
         $this->router = $router;
         $this->em     = $entityManager;
         $this->now    = (new DateTime())->format('Y-m-d H:i:s');
+        $qb = $this->em->getConnection()->createQueryBuilder();
+        $this->shopCategories = $qb->select('s.id', 's.category_id')
+            ->from('s_core_shops', 's')
+            ->execute()
+            ->fetchAllKeyValue();
     }
 
     /**
@@ -119,6 +135,8 @@ class EntityMapper
                 'fullPath'  => '',
             ]
         );
+        $shops   = array_intersect($this->shopCategories, $category->getPath());
+        $shopIds = array_values(array_flip($shops));
 
         $mappedData = [
             'id'             => $category->getId(),
@@ -129,7 +147,7 @@ class EntityMapper
             'hierarchy'      => str_replace('|', '//', $path),
             'depth'          => substr_count($path, '|') + 1,
             'subcategories'  => self::$childrenCache[$path],
-            'shop'           => [$context->getShop()->getId()],
+            'shop'           => $shopIds,
             'timestamp'      => $this->now,
             'url'            => $url,
             'additionalData' => '',
@@ -234,7 +252,7 @@ class EntityMapper
      *
      * @return array
      */
-    protected function mapCommonProductData(Product $product, ShopContext $context, $asVariant): array
+    protected function mapCommonProductData(Product $product, ShopContext $context, bool $asVariant): array
     {
         $router = $this->router;
         $url    = (string) $router->assemble(
@@ -256,10 +274,11 @@ class EntityMapper
             }
         }
 
+        $shops = [];
         $categories    = $product->getCategories();
         $categorySort  = [];
         $allCategories = array_map(
-            function (CategoryStruct $category) use ($context, $product, &$categorySort) {
+            function (CategoryStruct $category) use ($context, $product, &$categorySort, &$shops) {
                 // todo: check if there is a smarter way to get the position from s_categories_manual_sorting
                 $categoryObject = $this->em->find(Category::class, $category->getId());
                 $manualSorting  = $categoryObject->getManualSorting();
@@ -272,6 +291,7 @@ class EntityMapper
                     }
                 }
                 $categorySort["cat_{$category->getId()}"] = $position;
+                $shops[] = array_keys(array_intersect($this->shopCategories, $category->getPath()));
 
                 return [
                     'catid'  => (string) $category->getId(),
@@ -291,6 +311,8 @@ class EntityMapper
             $categories
         );
         $mainCategory  = array_pop($categories);
+
+        $shopIds = array_keys(array_flip(array_merge(...$shops)));
 
         $mainCategoryUrl = (string) $router->assemble(
             [
@@ -334,7 +356,7 @@ class EntityMapper
         $rawData = [
             'id'                           => $asVariant ? $product->getVariantId() : $product->getId(),
             'parent'                       => (string) ($asVariant ? $product->getId() : ''),
-            'shop'                         => [$context->getShop()->getId()],
+            'shop'                         => $shopIds,
             'ean'                          => $product->getNumber(),
             'activeto'                     => '',
             'activefrom'                   => '',
