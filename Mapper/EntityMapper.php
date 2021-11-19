@@ -17,7 +17,6 @@ use Shopware\Components\Routing\RouterInterface;
 use Shopware\Models\Category\Category;
 use function array_flip;
 use function array_intersect;
-use function array_intersect;
 use function array_keys;
 use function array_map;
 use function array_merge;
