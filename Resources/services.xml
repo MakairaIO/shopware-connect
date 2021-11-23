@@ -162,6 +162,11 @@
             <argument type="service" id="models"/>
         </service>
 
+        <service id="MakairaConnect\Subscriber\OrderSubscriber">
+            <argument key="$revisionRepository" type="expression">service('models').getRepository('MakairaConnect\\Models\\MakRevision')</argument>
+            <tag name="shopware.event_subscriber" />
+        </service>
+
 <!--
         <service id="MakairaConnect\Subscriber\FilterSEOUrls">
             <tag name="router.matcher" priority="1025" />
