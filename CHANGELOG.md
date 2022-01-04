@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/MakairaIO/shopware-connect/compare/2.0.15...2.1.0) (2022-01-04)
+
+
+### Features
+
+* **Attribute Casting:** Possibility to list properties/variant attributes to be casted to Float/Integer ([6a6dad2](https://github.com/MakairaIO/shopware-connect/commit/6a6dad2dbbc68d3b0359c7ba133d7531927c0940))
+
 ## [2.0.15](https://github.com/MakairaIO/shopware-connect/compare/2.0.14...2.0.15) (2021-12-10)
 
 
