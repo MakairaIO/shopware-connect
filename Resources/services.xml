@@ -13,6 +13,13 @@
             <tag name="makaira_connect.mapper.modifier.variant" priority="1000"/>
         </service>
 
+        <!-- Product modifier for attributes casting -->
+        <service id="MakairaConnect\Modifier\Product\CastAttributes">
+            <argument type="expression">service('shopware.plugin.config_reader').getByPluginName(parameter('makaira_connect.plugin_name'))</argument>
+            <tag name="makaira_connect.mapper.modifier.product" priority="1000"/>
+            <tag name="makaira_connect.mapper.modifier.variant" priority="1000"/>
+        </service>
+
         <!-- Category modifier example -->
         <service id="MakairaConnect\Modifier\Category\AddDescriptions">
             <tag name="makaira_connect.mapper.modifier.category" priority="1000"/>
