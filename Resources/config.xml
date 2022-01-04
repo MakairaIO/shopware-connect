@@ -19,5 +19,17 @@
             <label lang="de">Seiten-ID für das Tracking</label>
             <label lang="en">Tracking Page-ID</label>
         </element>
+
+        <element required="false" type="textarea" scope="locale">
+            <name>makaira_attribute_as_int</name>
+            <label lang="de"><![CDATA[Attribute als Integer importieren<br>(kommasepariert z.B. property_1, variant_1)]]></label>
+            <label lang="en"><![CDATA[Import Attributes as Integer<br>(comma separated e.g. property_1, variant_1)]]></label>
+        </element>
+
+        <element required="false" type="textarea" scope="locale">
+            <name>makaira_attribute_as_float</name>
+            <label lang="de"><![CDATA[Attribute als Float importieren<br>(kommasepariert z.B. property_1, variant_1)]]></label>
+            <label lang="en"><![CDATA[Import Attributes as Float<br>(comma separated e.g. property_1, variant_1)]]></label>
+        </element>
     </elements>
 </config>
