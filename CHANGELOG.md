@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/MakairaIO/shopware-connect/compare/2.1.0...2.2.0) (2022-01-05)
+
+
+### Features
+
+* **export:** Add more product attributes to export ([cd94b3a](https://github.com/MakairaIO/shopware-connect/commit/cd94b3abfdc49f4d6a8e63311e6231281c14737a))
+
 # [2.1.0](https://github.com/MakairaIO/shopware-connect/compare/2.0.15...2.1.0) (2022-01-04)
 
 
