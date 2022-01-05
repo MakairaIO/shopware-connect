@@ -424,6 +424,13 @@ class EntityMapper
                 'manufacturer_title' => $manufacturerTitle,
                 'sw_manufacturer'    => $makManufacturer,
                 'creationDate'       => (string) $creationDate,
+                'manufacturerNumber' => $product->getManufacturerNumber(),
+                'weight'             => $product->getWeight(),
+                'shippingFree'       => $product->isShippingFree(),
+                'highlight'          => $product->highlight(),
+                'width'              => $product->getWidth(),
+                'height'             => $product->getHeight(),
+                'length'             => $product->getLength(),
             ],
         ];
 
