@@ -2,8 +2,7 @@ name: Build Shopware Store package
 on:
   push:
     branches:
-      - stable      
-      - swpackage-test
+      - stable
 
 jobs:  
   swpackage:
