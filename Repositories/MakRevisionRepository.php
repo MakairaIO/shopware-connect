@@ -32,7 +32,8 @@ class MakRevisionRepository extends EntityRepository implements Enlight_Hook
         $statement = $this->_em
             ->getConnection()
             ->prepare(
-                'REPLACE INTO mak_revision (`type`, `id`, `entity_id`, `changed`) VALUES (:type, :id, :entityId, NOW())'
+                'REPLACE INTO s_plugin_makaira_connect_revision (`type`, `id`, `entity_id`, `changed`)
+                VALUES (:type, :id, :entityId, NOW())'
             );
         $statement->execute(['type' => $type, 'id' => $objectId, 'entityId' => $entityId]);
     }
@@ -67,7 +68,8 @@ class MakRevisionRepository extends EntityRepository implements Enlight_Hook
         $statement = $this->_em
             ->getConnection()
             ->prepare(
-                'REPLACE INTO mak_revision (`type`, `id`, `entity_id`, `changed`) VALUES (:type, :id, :entityId, NOW())'
+                'REPLACE INTO s_plugin_makaira_connect_revision (`type`, `id`, `entity_id`, `changed`)
+                VALUES (:type, :id, :entityId, NOW())'
             );
 
         foreach ($objectIds as $entityId => $objectId) {

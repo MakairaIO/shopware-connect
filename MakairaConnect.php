@@ -20,6 +20,7 @@ use Shopware\Bundle\CookieBundle\Structs\CookieStruct;
 use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
+use Shopware\Components\Plugin\Context\UpdateContext;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
@@ -47,7 +48,27 @@ class MakairaConnect extends Plugin
      */
     public function install(InstallContext $installContext)
     {
+        $this->checkSchemaStructure();
         $this->installModels();
+    }
+
+    public function update(UpdateContext $context)
+    {
+
+        $this->checkSchemaStructure();
+        parent::update($context);
+    }
+
+    private function checkSchemaStructure()
+    {
+        $conn = $this->container->get('dbal_connection');
+        $state = $conn->query(
+            "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = 'mak_revision' LIMIT 1"
+        );
+
+        if ($state->fetchColumn()) {
+            $conn->exec('ALTER TABLE mak_revision RENAME TO s_plugin_makaira_connect_revision');
+        }
     }
 
     /**
