@@ -1,3 +1,16 @@
+# [2.3.0](https://github.com/MakairaIO/shopware-connect/compare/2.2.0...2.3.0) (2022-01-13)
+
+
+### Bug Fixes
+
+* **Database:** Fix naming of revision table ([1e661a7](https://github.com/MakairaIO/shopware-connect/commit/1e661a71f9fa47c6f61f2a957d2ed266987fa87e))
+* Change table check ([f0ade1f](https://github.com/MakairaIO/shopware-connect/commit/f0ade1f17dca420ad2b9f92b5aa8858e832361dd))
+
+
+### Features
+
+* Add prefix to revision table ([f84d511](https://github.com/MakairaIO/shopware-connect/commit/f84d511a8b9db69251ef4b9266124e14f99f1e3e))
+
 # [2.2.0](https://github.com/MakairaIO/shopware-connect/compare/2.1.0...2.2.0) (2022-01-05)
 
 
