@@ -55,3 +55,4 @@ jobs:
         with:
           name: ${{ steps.get-latest-tag.outputs.tag }}
           path: ${{ steps.get-latest-tag.outputs.tag }}.zip
+
