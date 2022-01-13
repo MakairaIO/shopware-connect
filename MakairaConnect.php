@@ -11,9 +11,11 @@
 
 namespace MakairaConnect;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\ORM\Tools\SchemaTool;
 use MakairaConnect\DependencyInjection\ModifierCompilerPass;
 use MakairaConnect\Models\MakRevision as MakRevisionModel;
+use PDO;
 use Shopware\Bundle\CookieBundle\CookieCollection;
 use Shopware\Bundle\CookieBundle\Structs\CookieGroupStruct;
 use Shopware\Bundle\CookieBundle\Structs\CookieStruct;
@@ -22,6 +24,7 @@ use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
 use Shopware\Components\Plugin\Context\UpdateContext;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use function file_exists;
 
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
@@ -61,10 +64,13 @@ class MakairaConnect extends Plugin
 
     private function checkSchemaStructure()
     {
+        /** @var Connection $conn */
         $conn = $this->container->get('dbal_connection');
-        $state = $conn->query(
-            "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = 'mak_revision' LIMIT 1"
+
+        $state = $conn->prepare(
+            "SELECT 1 FROM information_schema.TABLES WHERE TABLE_SCHEMA = ? AND TABLE_NAME = 'mak_revision' LIMIT 1"
         );
+        $state->execute([$conn->getDatabase()]);
 
         if ($state->fetchColumn()) {
             $conn->exec('ALTER TABLE mak_revision RENAME TO s_plugin_makaira_connect_revision');
