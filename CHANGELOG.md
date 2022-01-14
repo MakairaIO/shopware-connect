@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/MakairaIO/shopware-connect/compare/2.3.0...2.3.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* **workflow:** Add chain to pipeline ([fccc4ce](https://github.com/MakairaIO/shopware-connect/commit/fccc4ceb8161f3c47f46d1e61feaef6757050bbd))
+
 # [2.3.0](https://github.com/MakairaIO/shopware-connect/compare/2.2.0...2.3.0) (2022-01-13)
 
 
