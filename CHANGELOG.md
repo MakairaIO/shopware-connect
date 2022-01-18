@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/MakairaIO/shopware-connect/compare/2.3.1...2.3.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* **Article Touch:** Skip articles without a main detail ([bb4d6c0](https://github.com/MakairaIO/shopware-connect/commit/bb4d6c0d9bc4468d9e045de304178443a8473c7c))
+
 ## [2.3.1](https://github.com/MakairaIO/shopware-connect/compare/2.3.0...2.3.1) (2022-01-14)
 
 

@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="../../../vendor/shopware/shopware/engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">Makaira :: Connect</label>
     <label lang="en">Makaira :: Connect</label>
-    <version>2.3.1</version>
+    <version>2.3.2</version>
     <copyright>makaira GmbH</copyright>
     <license>GPL-3.0-only</license>
     <link>https://www.makaira.io/</link>
@@ -12,7 +12,7 @@
     <description lang="en">Connect your Shopware 5 store to the headless e-commerce marketing platform Makaira in just a few minutes and use the CMS, recommendations, A/B testing search and further functionalities.</description>
     <description lang="de">Verbinde Deinen Shopware 5 Shop in nur wenigen Minuten mit der Headless E-Commerce Marketing Plattform Makaira und nutze das CMS, Recommendations, A/B-Testing, Suche und weitere Funktionen.</description>
     <compatibility minVersion="5.6.0" />
-    <changelog version="%NEXT_VERSION%">
+    <changelog version="2.3.2">
         <changes lang="en">Add check for broken articles</changes>
         <changes lang="de">Überprüfung auf defekte Artikel hinzufügen</changes>
     </changelog>
