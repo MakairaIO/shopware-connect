@@ -1,3 +1,10 @@
+## [2.3.5](https://github.com/MakairaIO/shopware-connect/compare/2.3.4...2.3.5) (2022-01-18)
+
+
+### Bug Fixes
+
+* Change name of temporary zip file ([0921b21](https://github.com/MakairaIO/shopware-connect/commit/0921b2196a8412e9b69a7cf189a33a5d3db2bcce))
+
 ## [2.3.4](https://github.com/MakairaIO/shopware-connect/compare/2.3.3...2.3.4) (2022-01-18)
 
 
