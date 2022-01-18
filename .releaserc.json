@@ -5,7 +5,6 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
-    "@semantic-release/github",
     [
       "@semantic-release/exec",
       {
@@ -47,7 +46,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "rm -rf .git* .releaserc.json composer.* package.json yarn.lock",
+        "prepareCmd": "rm -rf .git* .releaserc.json composer.* package.json yarn.lock node_modules",
         "execCwd": "MakairaConnect"
       }
     ],
