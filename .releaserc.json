@@ -13,6 +13,12 @@
       }
     ],
     [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "sed -i -E \"s@%NEXT_VERSION%@${nextRelease.version}@g\" plugin.xml"
+      }
+    ],
+    [
       "@semantic-release/git",
       {
         "assets": ["CHANGELOG.md", "plugin.xml"],
