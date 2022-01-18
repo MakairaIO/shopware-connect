@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/MakairaIO/shopware-connect/compare/2.3.3...2.3.4) (2022-01-18)
+
+
+### Bug Fixes
+
+* Remove node vendor folder and duplicated release build ([03c4bb4](https://github.com/MakairaIO/shopware-connect/commit/03c4bb4ae9ad7af8302805fa47353de6bf9d216f))
+
 ## [2.3.3](https://github.com/MakairaIO/shopware-connect/compare/2.3.2...2.3.3) (2022-01-18)
 
 
