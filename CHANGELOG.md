@@ -1,3 +1,10 @@
+## [2.3.6](https://github.com/MakairaIO/shopware-connect/compare/2.3.5...2.3.6) (2022-01-18)
+
+
+### Bug Fixes
+
+* Change to absolute path ([6fbda3b](https://github.com/MakairaIO/shopware-connect/commit/6fbda3b3ddc8175211cd4725d569756c1021a63a))
+
 ## [2.3.5](https://github.com/MakairaIO/shopware-connect/compare/2.3.4...2.3.5) (2022-01-18)
 
 
