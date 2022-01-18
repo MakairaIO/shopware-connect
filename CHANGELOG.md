@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/MakairaIO/shopware-connect/compare/2.3.2...2.3.3) (2022-01-18)
+
+
+### Bug Fixes
+
+* Move shopware package build into semantic-release build ([1aba7e1](https://github.com/MakairaIO/shopware-connect/commit/1aba7e145afa85a967d79503923ea66a3655f7ee))
+
 ## [2.3.2](https://github.com/MakairaIO/shopware-connect/compare/2.3.1...2.3.2) (2022-01-18)
 
 
