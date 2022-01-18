@@ -24,6 +24,50 @@
         "assets": ["CHANGELOG.md", "plugin.xml"],
         "message": "chore(release): ${nextRelease.version} [skip ci] \n\n${nextRelease.notes}"
       }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "mkdir -p MakairaConnect"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "find . -mindepth 1 -maxdepth 1 \\! -name 'MakairaConnect' -a \\! -name 'vendor' -print0 | xargs -0 cp -Pfrt MakairaConnect/"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "composer install -qno --no-ansi --no-scripts --no-progress --prefer-dist --no-dev",
+        "execCwd": "MakairaConnect"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "rm -rf .git* .releaserc.json composer.* package.json yarn.lock",
+        "execCwd": "MakairaConnect"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "zip -r MakairaConnect-${nextRelease.version}.zip ./MakairaConnect/*"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "MakairaConnect-${nextRelease.version}.zip",
+            "label": "Shopware 5 Plugin",
+            "name": "MakairaConnect-${nextRelease.version}.zip"
+          }
+        ]
+      }
     ]
   ]
 }
