@@ -99,7 +99,12 @@ class DoctrineSubscriber implements EventSubscriber
             }
 
             if ($entity instanceof Article) {
-                $id = $entity->getMainDetail()->getNumber();
+                $mainDetail = $entity->getMainDetail();
+                if (null === $mainDetail) {
+                    return;
+                }
+
+                $id = $mainDetail->getNumber();
             }
 
             $this->getRevisionRepository()->addRevision($type, (string) $id, $entityId);
@@ -132,8 +137,8 @@ class DoctrineSubscriber implements EventSubscriber
     {
         /** @var ModelEntity $entity */
         $entity = $arguments->getEntity();
-        if ($entity instanceof Article) {
-            $this->generateRevisionEntry($entity->getMainDetail());
+        if ($entity instanceof Article && null !== ($mainDetail = $entity->getMainDetail())) {
+            $this->generateRevisionEntry($mainDetail);
         }
         $this->generateRevisionEntry($entity);
     }
@@ -153,8 +158,8 @@ class DoctrineSubscriber implements EventSubscriber
             $this->generateRevisionEntry($entity->getArticleDetail());
         }
 
-        if ($entity instanceof Article) {
-            $this->generateRevisionEntry($entity->getMainDetail());
+        if ($entity instanceof Article && null !== ($mainDetail = $entity->getMainDetail())) {
+            $this->generateRevisionEntry($mainDetail);
         }
 
         if ($entity instanceof Detail) {
@@ -186,7 +191,9 @@ class DoctrineSubscriber implements EventSubscriber
             ]);
             foreach ($products as $product) {
                 /** @var Article $product */
-                $this->generateRevisionEntry($product->getMainDetail());
+                if (null !== ($mainDetail = $product->getMainDetail())) {
+                    $this->generateRevisionEntry($mainDetail);
+                }
                 $this->generateRevisionEntry($product);
             }
 

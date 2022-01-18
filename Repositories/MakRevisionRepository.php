@@ -52,7 +52,12 @@ class MakRevisionRepository extends EntityRepository implements Enlight_Hook
             try {
                 $id = $object->getId();
                 if ('product' === $type && $object instanceof Article) {
-                    $id = $object->getMainDetail()->getNumber();
+                    $mainDetail = $object->getMainDetail();
+                    if (null === $mainDetail) {
+                        continue;
+                    }
+
+                    $id = $mainDetail->getNumber();
                 }
 
                 if ('variant' === $type && $object instanceof Detail) {
