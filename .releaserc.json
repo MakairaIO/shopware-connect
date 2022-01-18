@@ -53,7 +53,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "zip -r MakairaConnect-${nextRelease.version}.zip ./MakairaConnect/*"
+        "prepareCmd": "zip -r /tmp/MakairaConnect.zip ./MakairaConnect/*"
       }
     ],
     [
@@ -61,8 +61,8 @@
       {
         "assets": [
           {
-            "path": "MakairaConnect-${nextRelease.version}.zip",
-            "label": "Shopware 5 Plugin",
+            "path": "tmp/MakairaConnect.zip",
+            "label": "Shopware 5 Plugin - Version ${nextRelease.version}",
             "name": "MakairaConnect-${nextRelease.version}.zip"
           }
         ]
