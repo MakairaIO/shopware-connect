@@ -61,7 +61,7 @@
       {
         "assets": [
           {
-            "path": "tmp/MakairaConnect.zip",
+            "path": "/tmp/MakairaConnect.zip",
             "label": "Shopware 5 Plugin - Version ${nextRelease.version}",
             "name": "MakairaConnect-${nextRelease.version}.zip"
           }
