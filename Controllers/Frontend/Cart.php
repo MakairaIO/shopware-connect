@@ -63,6 +63,48 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
         }
     }
 
+    public function updateArticleInCart(): Enlight_Controller_Response_ResponseHttp
+    {
+        try {
+            $requestParams = $this->getRequestParams();
+            if ($this->checkCartItemExist($requestParams['cart_item_id'])) {
+                $this->basket->sUpdateArticle($requestParams['cart_item_id'], $requestParams['quantity']);
+
+                return $this->createResponse([
+                    "ok" => true,
+                ]);
+            } else {
+                return $this->createResponse([
+                    "ok" => false,
+                    "message" => "Cart item id {$requestParams['cart_item_id']} doesn't exist"
+                ], 400);
+            }
+        } catch (Exception $e) {
+            return $this->createResponse([
+                "ok" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+    }
+
+    /**
+     * @throws Enlight_Event_Exception
+     * @throws Zend_Db_Adapter_Exception
+     * @throws Enlight_Exception
+     */
+    private function checkCartItemExist($cartItemId): bool
+    {
+        $basket = $this->basket->sGetBasket();
+        $basketItems = $basket['content'];
+        foreach ($basketItems as $basketItem) {
+            if ((int)$basketItem['id'] === (int)$cartItemId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * @throws Enlight_Event_Exception
      * @throws Enlight_Exception
@@ -77,16 +119,8 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
     {
         try {
             $requestParams = $this->getRequestParams();
-            $isCartItemIdExist = false;
-            $basket = $this->basket->sGetBasket();
-            $basketItems = $basket['content'];
-            foreach ($basketItems as $basketItem) {
-                if ((int)$basketItem['id'] === (int)$requestParams['cart_item_id']) {
-                    $isCartItemIdExist = true;
-                    break;
-                }
-            }
-            if ($isCartItemIdExist) {
+
+            if ($this->checkCartItemExist($requestParams['cart_item_id'])) {
                 $this->basket->sDeleteArticle($requestParams['cart_item_id']);
 
                 return $this->createResponse([
