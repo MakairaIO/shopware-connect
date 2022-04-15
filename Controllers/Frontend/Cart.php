@@ -19,33 +19,6 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
         $this->basket = Shopware()->Modules()->Basket();
     }
 
-    public function indexAction(): Enlight_Controller_Response_ResponseHttp
-    {
-        if ($this->request->getMethod() !== 'POST') {
-            return $this->createResponse([
-                "ok" => false,
-                "message" => 'Only POST is allowed'
-            ], 405);
-        }
-
-        $requestParams = $this->getRequestParams();
-        if (!isset($requestParams['action'])) {
-            return $this->createResponse([
-                "ok" => false,
-                "message" => '"action" is required'
-            ], 400);
-        }
-
-        if (!method_exists($this, $requestParams['action'])) {
-            return $this->createResponse([
-                "ok" => false,
-                "message" => "Action {$requestParams['action']} doesn't exist"
-            ], 400);
-        }
-
-        return $this->{$requestParams['action']}();
-    }
-
     public function addArticleToCart(): Enlight_Controller_Response_ResponseHttp
     {
         try {
