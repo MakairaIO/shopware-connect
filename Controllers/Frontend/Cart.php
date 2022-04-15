@@ -1,0 +1,108 @@
+<?php
+
+use MakairaConnect\Controllers\Frontend\BaseFrontendController;
+
+/**
+ * This file is part of a makaira GmbH project
+ * It is not Open Source and may not be redistributed.
+ * For contact information please visit http://www.makaira.io
+ * @version    0.1
+ * @author     Sunny <dt@marmalade.group>
+ */
+class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
+{
+    private sBasket $basket;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->basket = Shopware()->Modules()->Basket();
+    }
+
+    public function indexAction(): Enlight_Controller_Response_ResponseHttp
+    {
+        if ($this->request->getMethod() !== 'POST') {
+            return $this->createResponse([
+                "ok" => false,
+                "message" => 'Only POST is allowed'
+            ], 405);
+        }
+
+        $requestParams = $this->getRequestParams();
+        if (!isset($requestParams['action'])) {
+            return $this->createResponse([
+                "ok" => false,
+                "message" => '"action" is required'
+            ], 400);
+        }
+
+        if (!method_exists($this, $requestParams['action'])) {
+            return $this->createResponse([
+                "ok" => false,
+                "message" => "Action {$requestParams['action']} doesn't exist"
+            ], 400);
+        }
+
+        return $this->{$requestParams['action']}();
+    }
+
+    public function addArticleToCart(): Enlight_Controller_Response_ResponseHttp
+    {
+        try {
+            $requestParams = $this->getRequestParams();
+            $this->basket->sAddArticle($requestParams['article_id'], $requestParams['quantity']);
+
+            return $this->createResponse([
+                "ok" => true,
+            ]);
+        } catch (Exception $e) {
+            return $this->createResponse([
+                "ok" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+    }
+
+    /**
+     * @throws Enlight_Event_Exception
+     * @throws Enlight_Exception
+     * @throws Zend_Db_Adapter_Exception
+     */
+    public function getCart(): Enlight_Controller_Response_ResponseHttp
+    {
+        return $this->createResponse($this->basket->sGetBasket());
+    }
+
+    public function deleteCartItem(): Enlight_Controller_Response_ResponseHttp
+    {
+        try {
+            $requestParams = $this->getRequestParams();
+            $isCartItemIdExist = false;
+            $basket = $this->basket->sGetBasket();
+            $basketItems = $basket['content'];
+            foreach ($basketItems as $basketItem) {
+                if ((int)$basketItem['id'] === (int)$requestParams['cart_item_id']) {
+                    $isCartItemIdExist = true;
+                    break;
+                }
+            }
+            if ($isCartItemIdExist) {
+                $this->basket->sDeleteArticle($requestParams['cart_item_id']);
+
+                return $this->createResponse([
+                    "ok" => true,
+                ]);
+            } else {
+                return $this->createResponse([
+                    "ok" => false,
+                    "message" => "Cart item id {$requestParams['cart_item_id']} doesn't exist"
+                ], 400);
+            }
+        } catch (Exception $e) {
+            return $this->createResponse([
+                "ok" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+    }
+}
