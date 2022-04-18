@@ -19,7 +19,7 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
         $this->basket = Shopware()->Modules()->Basket();
     }
 
-    public function addArticleToCart(): Enlight_Controller_Response_ResponseHttp
+    protected function addArticleToCart(): Enlight_Controller_Response_ResponseHttp
     {
         try {
             $requestParams = $this->getRequestParams();
@@ -36,7 +36,7 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
         }
     }
 
-    public function updateArticleInCart(): Enlight_Controller_Response_ResponseHttp
+    protected function updateArticleInCart(): Enlight_Controller_Response_ResponseHttp
     {
         try {
             $requestParams = $this->getRequestParams();
@@ -83,12 +83,12 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
      * @throws Enlight_Exception
      * @throws Zend_Db_Adapter_Exception
      */
-    public function getCart(): Enlight_Controller_Response_ResponseHttp
+    protected function getCart(): Enlight_Controller_Response_ResponseHttp
     {
         return $this->createResponse($this->basket->sGetBasket());
     }
 
-    public function deleteCartItem(): Enlight_Controller_Response_ResponseHttp
+    protected function deleteCartItem(): Enlight_Controller_Response_ResponseHttp
     {
         try {
             $requestParams = $this->getRequestParams();

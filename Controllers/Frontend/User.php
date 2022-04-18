@@ -19,7 +19,7 @@ class Shopware_Controllers_Frontend_User extends BaseFrontendController
         $this->admin = Shopware()->Modules()->Admin();
     }
 
-    public function getCurrentUser(): Enlight_Controller_Response_ResponseHttp
+    protected function getCurrentUser(): Enlight_Controller_Response_ResponseHttp
     {
         if (!$this->admin->sCheckUser()) {
             return $this->createResponse([
@@ -37,7 +37,7 @@ class Shopware_Controllers_Frontend_User extends BaseFrontendController
         return $this->createResponse($this->admin->sGetUserData());
     }
 
-    public function login(): Enlight_Controller_Response_ResponseHttp
+    protected function login(): Enlight_Controller_Response_ResponseHttp
     {
         try {
             $requestParams = $this->getRequestParams();
@@ -72,7 +72,7 @@ class Shopware_Controllers_Frontend_User extends BaseFrontendController
         }
     }
 
-    public function logout(): Enlight_Controller_Response_ResponseHttp
+    protected function logout(): Enlight_Controller_Response_ResponseHttp
     {
         $this->admin->logout();
 
