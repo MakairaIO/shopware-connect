@@ -11,7 +11,10 @@ use MakairaConnect\Controllers\Frontend\BaseFrontendController;
  */
 class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
 {
-    private sBasket $basket;
+    /**
+     * @var sBasket
+     */
+    private $basket;
 
     public function __construct()
     {

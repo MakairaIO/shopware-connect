@@ -7,7 +7,7 @@ use Enlight_Controller_Response_ResponseHttp;
 use Exception;
 use Shopware\Components\CSRFWhitelistAware;
 
-class BaseFrontendController extends Enlight_Controller_Action implements CSRFWhitelistAware
+abstract class BaseFrontendController extends Enlight_Controller_Action implements CSRFWhitelistAware
 {
     /**
      * Pre dispatch method

@@ -11,7 +11,10 @@ use MakairaConnect\Controllers\Frontend\BaseFrontendController;
  */
 class Shopware_Controllers_Frontend_User extends BaseFrontendController
 {
-    private sAdmin $admin;
+    /**
+     * @var sAdmin
+     */
+    private $admin;
 
     public function __construct()
     {
@@ -34,7 +37,13 @@ class Shopware_Controllers_Frontend_User extends BaseFrontendController
             ]);
         }
 
-        return $this->createResponse($this->admin->sGetUserData());
+        $user = $userData['additional']['user'];
+        return $this->createResponse([
+            'id'        => $user['customernumber'],
+            'firstname' => $user['firstname'],
+            'lastname'  => $user['lastname'],
+            'email'     => $user['email'],
+        ]);
     }
 
     protected function login(): Enlight_Controller_Response_ResponseHttp
