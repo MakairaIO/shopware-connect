@@ -49,12 +49,12 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
                 return $this->createResponse([
                     "ok" => true,
                 ]);
-            } else {
-                return $this->createResponse([
-                    "ok" => false,
-                    "message" => "Cart item id {$requestParams['cart_item_id']} doesn't exist"
-                ], 400);
             }
+
+            return $this->createResponse([
+                "ok" => false,
+                "message" => "Cart item id {$requestParams['cart_item_id']} doesn't exist"
+            ], 400);
         } catch (Exception $e) {
             return $this->createResponse([
                 "ok" => false,
@@ -88,7 +88,22 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
      */
     protected function getCart(): Enlight_Controller_Response_ResponseHttp
     {
-        return $this->createResponse($this->basket->sGetBasket());
+        $cart = $this->basket->sGetBasket();
+        $cartItems = array_map(
+            static function ($cartItem) {
+                return [
+                    'id'         => $cartItem['id'],
+                    'name'       => $cartItem['articlename'],
+                    'price'      => $cartItem['price'],
+                    'base_price' => $cartItem['additional_details']['pseudoprice'] ?? "0",
+                    'quantity'   => $cartItem['quantity'],
+                    'image_path' => reset($cartItem['image']['src']),
+                ];
+            },
+            $cart['content']
+        );
+
+        return $this->createResponse($cartItems);
     }
 
     protected function deleteCartItem(): Enlight_Controller_Response_ResponseHttp
@@ -102,12 +117,12 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
                 return $this->createResponse([
                     "ok" => true,
                 ]);
-            } else {
-                return $this->createResponse([
-                    "ok" => false,
-                    "message" => "Cart item id {$requestParams['cart_item_id']} doesn't exist"
-                ], 400);
             }
+
+            return $this->createResponse([
+                "ok" => false,
+                "message" => "Cart item id {$requestParams['cart_item_id']} doesn't exist"
+            ], 400);
         } catch (Exception $e) {
             return $this->createResponse([
                 "ok" => false,
