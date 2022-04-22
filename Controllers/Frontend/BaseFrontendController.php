@@ -5,9 +5,7 @@ use Enlight_Controller_Action;
 use Enlight_Controller_Exception;
 use Enlight_Controller_Response_ResponseHttp;
 use Exception;
-use Makaira\Signing\Hash\Sha256;
 use Shopware\Components\CSRFWhitelistAware;
-use Shopware\Components\Plugin\Configuration\ReaderInterface;
 
 class BaseFrontendController extends Enlight_Controller_Action implements CSRFWhitelistAware
 {
@@ -18,46 +16,6 @@ class BaseFrontendController extends Enlight_Controller_Action implements CSRFWh
     public function preDispatch()
     {
         $this->container->get('plugin_manager')->Controller()->ViewRenderer()->setNoRender();
-        $configReader = $this->container->get(ReaderInterface::class);
-        $config = $configReader->getByPluginName('MakairaConnect');
-
-        $result = $this->verifySignature($config['makaira_connect_secret']);
-        if ($result instanceof Enlight_Controller_Response_ResponseHttp) {
-            $result->send();
-            exit;
-        }
-    }
-
-    /**
-     * @param string $secret
-     * @return ?Enlight_Controller_Response_ResponseHttp
-     */
-    private function verifySignature(string $secret): ?Enlight_Controller_Response_ResponseHttp
-    {
-        if (!$this->request->headers->has('x-makaira-nonce') ||
-            !$this->request->headers->has('x-makaira-hash')) {
-            return $this->createResponse([
-                'message' => 'Unauthorized'
-            ], 401);
-        }
-
-        $signer = new Sha256();
-
-        $expected = $signer->hash(
-            $this->request->headers->get('x-makaira-nonce'),
-            $this->request->getContent(),
-            $secret
-        );
-
-        $current = $this->request->headers->get('x-makaira-hash');
-
-        if (!hash_equals($expected, $current)) {
-            return $this->createResponse([
-                'message' => 'Forbidden'
-            ], 403);
-        }
-
-        return null;
     }
 
     protected function createResponse(array $data, int $statusCode = 200): Enlight_Controller_Response_ResponseHttp
