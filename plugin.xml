@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../../vendor/shopware/shopware/engine/Shopware/Components/Plugin/schema/plugin.xsd">
-    <label>Makaira :: Connect</label>
-    <version>2.0.3</version>
+    <label lang="de">Makaira :: Connect</label>
+    <label lang="en">Makaira :: Connect</label>
+    <version>2.3.6</version>
     <copyright>makaira GmbH</copyright>
-    <license>MIT</license>
+    <license>GPL-3.0-only</license>
     <link>https://www.makaira.io/</link>
     <author>makaira GmbH</author>
     <description>Connector to Makaira</description>
     <description lang="en">Connect your Shopware 5 store to the headless e-commerce marketing platform Makaira in just a few minutes and use the CMS, recommendations, A/B testing search and further functionalities.</description>
-    <description lang="de">Verbinde Dein Shopware 5 Shop in nur wenigen Minuten mit der Headless E-Commerce Marketing Plattform Makaira und nutze das CMS, Recommendations, A/B-Testing, Suche und weitere Funktionen.</description>
-    <compatibility minVersion="5.2.7" />
+    <description lang="de">Verbinde Deinen Shopware 5 Shop in nur wenigen Minuten mit der Headless E-Commerce Marketing Plattform Makaira und nutze das CMS, Recommendations, A/B-Testing, Suche und weitere Funktionen.</description>
+    <compatibility minVersion="5.6.0" />
+    <changelog version="2.3.2">
+        <changes lang="en">Add check for broken articles</changes>
+        <changes lang="de">Überprüfung auf defekte Artikel hinzufügen</changes>
+    </changelog>
+    <changelog version="2.3.0">
+        <changes lang="en">Add prefix to revision table</changes>
+        <changes lang="de">Präfix zur Revisionstabelle hinzufügen</changes>
+    </changelog>
+    <changelog version="2.0.15">
+        <changes lang="en">Add suffix for variant configurations</changes>
+        <changes lang="de">Präfix für Varianten-Konfigurationen</changes>
+    </changelog>
+    <changelog version="2.0.14">
+        <changes lang="en">Add prefix to attribute IDs</changes>
+        <changes lang="de">Präfix für Attribut-IDs</changes>
+    </changelog>
+    <changelog version="2.0.12">
+        <changes lang="en">Shopware 5.6 compatibility fixes</changes>
+        <changes lang="de">Shopware 5.6 Kompatibilitätsanpassungen</changes>
+    </changelog>
+    <changelog version="2.0.11">
+        <changes lang="en">Add german changelog entry</changes>
+        <changes lang="de">Changelog Eintrag für Deutsch eingefügt</changes>
+    </changelog>
+    <changelog version="2.0.10">
+        <changes lang="en">Shopware 5.6 compatibility fixes</changes>
+        <changes lang="de">Shopware 5.6 Kompatibilitätsanpassungen</changes>
+    </changelog>
+    <changelog version="2.0.9">
+        <changes lang="de">Version und deutsche Übersetzung zum Changelog hinzufügen</changes>
+        <changes lang="en">Add version and german translation to changelog</changes>
+    </changelog>
 </plugin>

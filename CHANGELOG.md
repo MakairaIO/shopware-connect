@@ -1,3 +1,158 @@
+## [2.3.6](https://github.com/MakairaIO/shopware-connect/compare/2.3.5...2.3.6) (2022-01-18)
+
+
+### Bug Fixes
+
+* Change to absolute path ([6fbda3b](https://github.com/MakairaIO/shopware-connect/commit/6fbda3b3ddc8175211cd4725d569756c1021a63a))
+
+## [2.3.5](https://github.com/MakairaIO/shopware-connect/compare/2.3.4...2.3.5) (2022-01-18)
+
+
+### Bug Fixes
+
+* Change name of temporary zip file ([0921b21](https://github.com/MakairaIO/shopware-connect/commit/0921b2196a8412e9b69a7cf189a33a5d3db2bcce))
+
+## [2.3.4](https://github.com/MakairaIO/shopware-connect/compare/2.3.3...2.3.4) (2022-01-18)
+
+
+### Bug Fixes
+
+* Remove node vendor folder and duplicated release build ([03c4bb4](https://github.com/MakairaIO/shopware-connect/commit/03c4bb4ae9ad7af8302805fa47353de6bf9d216f))
+
+## [2.3.3](https://github.com/MakairaIO/shopware-connect/compare/2.3.2...2.3.3) (2022-01-18)
+
+
+### Bug Fixes
+
+* Move shopware package build into semantic-release build ([1aba7e1](https://github.com/MakairaIO/shopware-connect/commit/1aba7e145afa85a967d79503923ea66a3655f7ee))
+
+## [2.3.2](https://github.com/MakairaIO/shopware-connect/compare/2.3.1...2.3.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* **Article Touch:** Skip articles without a main detail ([bb4d6c0](https://github.com/MakairaIO/shopware-connect/commit/bb4d6c0d9bc4468d9e045de304178443a8473c7c))
+
+## [2.3.1](https://github.com/MakairaIO/shopware-connect/compare/2.3.0...2.3.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* **workflow:** Add chain to pipeline ([fccc4ce](https://github.com/MakairaIO/shopware-connect/commit/fccc4ceb8161f3c47f46d1e61feaef6757050bbd))
+
+# [2.3.0](https://github.com/MakairaIO/shopware-connect/compare/2.2.0...2.3.0) (2022-01-13)
+
+
+### Bug Fixes
+
+* **Database:** Fix naming of revision table ([1e661a7](https://github.com/MakairaIO/shopware-connect/commit/1e661a71f9fa47c6f61f2a957d2ed266987fa87e))
+* Change table check ([f0ade1f](https://github.com/MakairaIO/shopware-connect/commit/f0ade1f17dca420ad2b9f92b5aa8858e832361dd))
+
+
+### Features
+
+* Add prefix to revision table ([f84d511](https://github.com/MakairaIO/shopware-connect/commit/f84d511a8b9db69251ef4b9266124e14f99f1e3e))
+
+# [2.2.0](https://github.com/MakairaIO/shopware-connect/compare/2.1.0...2.2.0) (2022-01-05)
+
+
+### Features
+
+* **export:** Add more product attributes to export ([cd94b3a](https://github.com/MakairaIO/shopware-connect/commit/cd94b3abfdc49f4d6a8e63311e6231281c14737a))
+
+# [2.1.0](https://github.com/MakairaIO/shopware-connect/compare/2.0.15...2.1.0) (2022-01-04)
+
+
+### Features
+
+* **Attribute Casting:** Possibility to list properties/variant attributes to be casted to Float/Integer ([6a6dad2](https://github.com/MakairaIO/shopware-connect/commit/6a6dad2dbbc68d3b0359c7ba133d7531927c0940))
+
+## [2.0.15](https://github.com/MakairaIO/shopware-connect/compare/2.0.14...2.0.15) (2021-12-10)
+
+
+### Bug Fixes
+
+* Add suffix for variant configurations ([3193df8](https://github.com/MakairaIO/shopware-connect/commit/3193df886bd52a47b1c9285f528753f429433bf1))
+
+## [2.0.14](https://github.com/MakairaIO/shopware-connect/compare/2.0.13...2.0.14) (2021-12-09)
+
+
+### Bug Fixes
+
+* Add prefix to attribute IDs ([333fbab](https://github.com/MakairaIO/shopware-connect/commit/333fbab8159b423a415e8a403de216515635f0b3))
+
+## [2.0.13](https://github.com/MakairaIO/shopware-connect/compare/2.0.12...2.0.13) (2021-12-09)
+
+
+### Bug Fixes
+
+* Scope for variables ([18bf015](https://github.com/MakairaIO/shopware-connect/commit/18bf0156a287d5c1fd22df9770d2cfbf4a6a89ab))
+
+## [2.0.12](https://github.com/MakairaIO/shopware-connect/compare/2.0.11...2.0.12) (2021-12-08)
+
+
+### Bug Fixes
+
+* Shopware 5.6 compatibility ([e88d3ca](https://github.com/MakairaIO/shopware-connect/commit/e88d3ca7a9250c654652b6c2f42028bbd240a1af))
+
+## [2.0.11](https://github.com/MakairaIO/shopware-connect/compare/2.0.10...2.0.11) (2021-12-08)
+
+
+### Bug Fixes
+
+* Add german changelog entry ([cd72453](https://github.com/MakairaIO/shopware-connect/commit/cd72453236d5fcefbcade16272242d09e851b8d5))
+
+## [2.0.10](https://github.com/MakairaIO/shopware-connect/compare/2.0.9...2.0.10) (2021-12-08)
+
+
+### Bug Fixes
+
+* Shopware 5.6 compatibility ([cde4a82](https://github.com/MakairaIO/shopware-connect/commit/cde4a82d4e9f8ce72fb90025ae57528e56d80d8f))
+
+## [2.0.9](https://github.com/MakairaIO/shopware-connect/compare/2.0.8...2.0.9) (2021-12-08)
+
+
+### Bug Fixes
+
+* Add version and german translation to changelog ([009d7b3](https://github.com/MakairaIO/shopware-connect/commit/009d7b3b86a85a8d1333d49dacbd1eb63579f632))
+
+## [2.0.8](https://github.com/MakairaIO/shopware-connect/compare/2.0.7...2.0.8) (2021-12-08)
+
+
+### Bug Fixes
+
+* Add changelog ([d8c3baf](https://github.com/MakairaIO/shopware-connect/commit/d8c3bafed9be0c8fa6b1a2bd6b9cc132c19082c5))
+
+## [2.0.7](https://github.com/MakairaIO/shopware-connect/compare/2.0.6...2.0.7) (2021-12-07)
+
+
+### Bug Fixes
+
+* Fix Shopware quality issues ([8a05c41](https://github.com/MakairaIO/shopware-connect/commit/8a05c41f7d7c5f5a1468944781234e43865d791e))
+
+## [2.0.6](https://github.com/MakairaIO/shopware-connect/compare/2.0.5...2.0.6) (2021-12-07)
+
+
+### Bug Fixes
+
+* Remove erroneous import ([d01ba5f](https://github.com/MakairaIO/shopware-connect/commit/d01ba5f46e17456e00c539d5c9da2f577ea5abc7))
+
+## [2.0.5](https://github.com/MakairaIO/shopware-connect/compare/2.0.4...2.0.5) (2021-11-30)
+
+
+### Bug Fixes
+
+* **php:** 7.3 compatibility ([c64deeb](https://github.com/MakairaIO/shopware-connect/commit/c64deeb7c3fad66ff9b4cc7ddda1e47536bb0446))
+
+## [2.0.4](https://github.com/MakairaIO/shopware-connect/compare/2.0.3...2.0.4) (2021-11-26)
+
+
+### Bug Fixes
+
+* Move variable to global scope ([78f12e8](https://github.com/MakairaIO/shopware-connect/commit/78f12e8921303f1b9335c233e2fb5f550b0ba6da))
+* Remove typo ([39c96cd](https://github.com/MakairaIO/shopware-connect/commit/39c96cdd1bb1fef37e7cfe9c135a833aa1acb7be))
+* Remove unnecessary and broken event listener ([3b25b1f](https://github.com/MakairaIO/shopware-connect/commit/3b25b1fe64f91d4b571d46c6e8c8790d0bb67485))
+
 ## [2.0.3](https://github.com/MakairaIO/shopware-connect/compare/2.0.2...2.0.3) (2021-11-26)
 
 

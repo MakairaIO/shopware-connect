@@ -5,7 +5,6 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
-    "@semantic-release/github",
     [
       "@semantic-release/exec",
       {
@@ -13,10 +12,60 @@
       }
     ],
     [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "sed -i -E \"s@%NEXT_VERSION%@${nextRelease.version}@g\" plugin.xml"
+      }
+    ],
+    [
       "@semantic-release/git",
       {
         "assets": ["CHANGELOG.md", "plugin.xml"],
         "message": "chore(release): ${nextRelease.version} [skip ci] \n\n${nextRelease.notes}"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "mkdir -p MakairaConnect"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "find . -mindepth 1 -maxdepth 1 \\! -name 'MakairaConnect' -a \\! -name 'vendor' -print0 | xargs -0 cp -Pfrt MakairaConnect/"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "composer install -qno --no-ansi --no-scripts --no-progress --prefer-dist --no-dev",
+        "execCwd": "MakairaConnect"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "rm -rf .git* .releaserc.json composer.* package.json yarn.lock node_modules",
+        "execCwd": "MakairaConnect"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "zip -r /tmp/MakairaConnect.zip ./MakairaConnect/*"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "/tmp/MakairaConnect.zip",
+            "label": "Shopware 5 Plugin - Version ${nextRelease.version}",
+            "name": "MakairaConnect-${nextRelease.version}.zip"
+          }
+        ]
       }
     ]
   ]

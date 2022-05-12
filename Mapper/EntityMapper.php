@@ -7,11 +7,11 @@ use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use Exception;
 use Doctrine\DBAL;
 use MakairaConnect\Modifier\CategoryModifierInterface;
 use MakairaConnect\Modifier\ManufacturerModifierInterface;
 use MakairaConnect\Modifier\ProductModifierInterface;
+use PDO;
 use Shopware\Bundle\StoreFrontBundle\Struct\Category as CategoryStruct;
 use Shopware\Bundle\StoreFrontBundle\Struct\Property\Set as PropertySet;
 use Shopware\Bundle\StoreFrontBundle\Struct\Product;
@@ -96,7 +96,7 @@ class EntityMapper
         $this->shopCategories = $qb->select('s.id', 's.category_id')
             ->from('s_core_shops', 's')
             ->execute()
-            ->fetchAllKeyValue();
+            ->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
     /**
@@ -215,7 +215,7 @@ class EntityMapper
         $attributeStr = [];
         if (null !== ($properties = $product->getPropertySet())) {
             foreach ($properties->getGroups() as $group) {
-                $id = $group->getId();
+                $id = "property_{$group->getId()}";
                 $title = $group->getName();
                 foreach ($group->getOptions() as $option) {
                     $value = $option->getName();
@@ -224,7 +224,7 @@ class EntityMapper
 
                     if (empty($attributeStr[$id])) {
                         $attributeStr[$id] = [
-                            'id' => $id,
+                            'id'    => $id,
                             'title' => $title,
                             'value' => [$value],
                         ];
@@ -238,8 +238,8 @@ class EntityMapper
         foreach ($variants as $variant) {
             $variantAttributes = $productAttributes;
             foreach ($variant->getConfiguration() as $group) {
-                $id = $group->getId();
-                $title = $group->getName();
+                $id = "variant_{$group->getId()}";
+                $title = "{$group->getName()} (Variant)";
                 foreach ($group->getOptions() as $groupOption) {
                     $value = $groupOption->getName();
                     $variantAttributes[$id][] = $value;
@@ -424,6 +424,13 @@ class EntityMapper
                 'manufacturer_title' => $manufacturerTitle,
                 'sw_manufacturer'    => $makManufacturer,
                 'creationDate'       => (string) $creationDate,
+                'manufacturerNumber' => $product->getManufacturerNumber(),
+                'weight'             => $product->getWeight(),
+                'shippingFree'       => $product->isShippingFree(),
+                'highlight'          => $product->highlight(),
+                'width'              => $product->getWidth(),
+                'height'             => $product->getHeight(),
+                'length'             => $product->getLength(),
             ],
         ];
 
@@ -465,14 +472,15 @@ class EntityMapper
         foreach ($propertySets as $propertySet) {
             foreach ($propertySet->getGroups() as $group) {
                 foreach ($group->getOptions() as $option) {
-                    if (empty($attributeStr[$group->getId()])) {
-                        $attributeStr[$group->getId()] = [
-                            'id'    => $group->getId(),
+                    $id = "property_{$group->getId()}";
+                    if (empty($attributeStr[$id])) {
+                        $attributeStr[$id] = [
+                            'id'    => $id,
                             'title' => $group->getName(),
                             'value' => [$option->getName()],
                         ];
                     } else {
-                        $attributeStr[$group->getId()]['value'][] = $option->getName();
+                        $attributeStr[$id]['value'][] = $option->getName();
                     }
                 }
             }
@@ -480,14 +488,15 @@ class EntityMapper
 
         foreach ($variant->getConfiguration() as $group) {
             foreach ($group->getOptions() as $option) {
-                if (empty($attributeStr[$group->getId()])) {
-                    $attributeStr[$group->getId()] = [
-                        'id'    => $group->getId(),
-                        'title' => $group->getName(),
+                $id = "variant_{$group->getId()}";
+                if (empty($attributeStr[$id])) {
+                    $attributeStr[$id] = [
+                        'id'    => $id,
+                        'title' => "{$group->getName()} (Variant)",
                         'value' => [$option->getName()],
                     ];
                 } else {
-                    $attributeStr[$group->getId()]['value'][] = $option->getName();
+                    $attributeStr[$id]['value'][] = $option->getName();
                 }
             }
         }

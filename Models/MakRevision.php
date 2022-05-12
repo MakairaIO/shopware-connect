@@ -9,7 +9,7 @@ use Shopware\Components\Model\ModelEntity;
 
 /**
  * @ORM\Entity(repositoryClass="MakairaConnect\Repositories\MakRevisionRepository")
- * @ORM\Table(name="mak_revision", uniqueConstraints={
+ * @ORM\Table(name="s_plugin_makaira_connect_revision", uniqueConstraints={
  *     @ORM\UniqueConstraint(name="mak_unique_doc", columns={"id", "type"})
  * })
  */
