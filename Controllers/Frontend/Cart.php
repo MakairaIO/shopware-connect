@@ -100,7 +100,7 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
                     'image_path' => reset($cartItem['image']['src']),
                 ];
             },
-            $cart['content']
+            (array) ($cart['content'] ?? [])
         );
 
         return $this->createResponse($cartItems);
