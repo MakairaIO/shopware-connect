@@ -28,9 +28,7 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
             $requestParams = $this->getRequestParams();
             $this->basket->sAddArticle($requestParams['article_id'], $requestParams['quantity']);
 
-            return $this->createResponse([
-                "ok" => true,
-            ]);
+            return $this->getCart();
         } catch (Exception $e) {
             return $this->createResponse([
                 "ok" => false,
@@ -46,9 +44,7 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
             if ($this->checkCartItemExist($requestParams['cart_item_id'])) {
                 $this->basket->sUpdateArticle($requestParams['cart_item_id'], $requestParams['quantity']);
 
-                return $this->createResponse([
-                    "ok" => true,
-                ]);
+                return $this->getCart();
             }
 
             return $this->createResponse([
@@ -114,9 +110,7 @@ class Shopware_Controllers_Frontend_Cart extends BaseFrontendController
             if ($this->checkCartItemExist($requestParams['cart_item_id'])) {
                 $this->basket->sDeleteArticle($requestParams['cart_item_id']);
 
-                return $this->createResponse([
-                    "ok" => true,
-                ]);
+                return $this->getCart();
             }
 
             return $this->createResponse([
