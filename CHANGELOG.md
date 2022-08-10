@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/MakairaIO/shopware-connect/compare/2.3.6...2.4.0) (2022-08-10)
+
+
+### Features
+
+* Add API endpoints for storefront ([#22](https://github.com/MakairaIO/shopware-connect/issues/22)) ([8f1c388](https://github.com/MakairaIO/shopware-connect/commit/8f1c3882932d48b3bf3baad52d704218bbfdb47e))
+
 ## [2.3.6](https://github.com/MakairaIO/shopware-connect/compare/2.3.5...2.3.6) (2022-01-18)
 
 
