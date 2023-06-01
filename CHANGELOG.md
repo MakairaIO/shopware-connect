@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/MakairaIO/shopware-connect/compare/2.4.0...2.4.1) (2023-06-01)
+
+
+### Bug Fixes
+
+* Ensure valid IDs in revision table ([#29](https://github.com/MakairaIO/shopware-connect/issues/29)) ([ac3313a](https://github.com/MakairaIO/shopware-connect/commit/ac3313a817591c5a051d2360983f55a35f959458))
+
 # [2.4.0](https://github.com/MakairaIO/shopware-connect/compare/2.3.6...2.4.0) (2022-08-10)
 
 
