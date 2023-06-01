@@ -65,8 +65,8 @@ class OrderSubscriber implements SubscriberInterface
         /** @var sOrder $order */
         $order = $eventArgs->get('subject');
         foreach ($order->sBasketData['content'] as $basketProduct) {
-            // Skip virtual products like discounts.
-            if (0 < $basketProduct['articleID']) {
+            // Skip virtual products like discounts or redeemed coupons.
+            if (!empty($basketProduct['articleID']) && !empty($basketProduct['articleDetailId'])) {
                 $this->revisionRepository->addRevision(
                     'variant',
                     (string) $basketProduct['ordernumber'],
