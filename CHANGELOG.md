@@ -1,3 +1,10 @@
+## [2.4.2](https://github.com/MakairaIO/shopware-connect/compare/2.4.1...2.4.2) (2023-06-09)
+
+
+### Bug Fixes
+
+* **Data Mapper:** Set default values for active, stock and onstock for products ([#30](https://github.com/MakairaIO/shopware-connect/issues/30)) ([8baf602](https://github.com/MakairaIO/shopware-connect/commit/8baf602895296762692c7ca1ea66c092f325ac3f))
+
 ## [2.4.1](https://github.com/MakairaIO/shopware-connect/compare/2.4.0...2.4.1) (2023-06-01)
 
 
